@@ -72,7 +72,7 @@ public class ParticleGenerator {
 
         boolean randomRadius = particleRadius == null;
 
-        for (int i = 0; i < particleAmount; i++) {
+        for (long i = 0; i < particleAmount; i++) {
             Double x = random.nextDouble() * areaLength;
             Double y = random.nextDouble() * areaLength;
 
@@ -81,7 +81,7 @@ public class ParticleGenerator {
                             ? minRadius + (maxRadius - minRadius) * random.nextDouble()
                             : particleRadius;
 
-            particles.add(new Particle(x, y, radius));
+            particles.add(new Particle(i, x, y, radius));
         }
 
         return particles;

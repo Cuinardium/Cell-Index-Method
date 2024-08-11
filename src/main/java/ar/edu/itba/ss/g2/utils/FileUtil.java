@@ -1,4 +1,8 @@
-package ar.edu.itba.ss.g2;
+package ar.edu.itba.ss.g2.utils;
+
+import ar.edu.itba.ss.g2.Particle;
+import ar.edu.itba.ss.g2.state.Input;
+import ar.edu.itba.ss.g2.state.Output;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,27 +10,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class State {
+public class FileUtil {
 
-    private final long L;
-    private final List<Particle> particles;
-
-    public State(long L, List<Particle> particles) {
-        this.L = L;
-        this.particles = particles;
+    private FileUtil() {
+        throw new RuntimeException("Util class");
     }
 
-    public long getL() {
-        return this.L;
-    }
-
-    public List<Particle> getParticles() {
-        return this.particles;
-    }
-
-    public void serialize(String directory) throws IOException {
+    public static void serializeInput(Input input, String directory) throws IOException {
 
         // Create directory if it doesn't exist
         File dir = new File(directory);
@@ -34,7 +29,9 @@ public class State {
             dir.mkdirs();
         }
 
-        int N = particles.size();
+        int N = input.getParticles().size();
+        List<Particle> particles = input.getParticles();
+        long L = input.getL();
 
         // Static file
         try (FileWriter writer = new FileWriter(new File(directory + "/static.txt"))) {
@@ -54,7 +51,7 @@ public class State {
         }
     }
 
-    public static State deserialize(String directory) throws IOException {
+    public static Input deserializeInput(String directory) throws IOException {
 
         long L;
         int N;
@@ -89,10 +86,36 @@ public class State {
                 double y = Double.parseDouble(position[1]);
                 double r = radiuses.get(i);
 
-                particles.add(new Particle(x, y, r));
+                particles.add(new Particle((long) i, x, y, r));
             }
         }
 
-        return new State(L, particles);
+        return new Input(L, particles);
+    }
+
+    public static void serializeOutput(Output output, String directory) throws IOException {
+
+        // Create directory if it doesn't exist
+        File dir = new File(directory);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        Map<Particle, List<Particle>> particleNeighbours = output.getParticleNeighbours();
+        List<Particle> sortedParticles =
+                particleNeighbours.keySet().stream()
+                        .sorted(Comparator.comparingLong(Particle::getId))
+                        .toList();
+
+        try (FileWriter writer = new FileWriter(new File(directory + "/output.txt"))) {
+            for (Particle particle : sortedParticles) {
+                writer.write(
+                        particle.getId()
+                                + " "
+                                + particleNeighbours.get(particle).stream()
+                                        .map(p -> p.getId().toString())
+                                        .collect(Collectors.joining(" ")));
+            }
+        }
     }
 }
