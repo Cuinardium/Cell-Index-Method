@@ -24,4 +24,9 @@ public class Particle {
     public Double getRadius() {
         return radius;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "x=" + x + ", y=" + y + ", r=" + radius + '}';
+    }
 }
