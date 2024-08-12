@@ -116,6 +116,12 @@ public class ArgParser {
                     try {
                         minR = Double.parseDouble(split[0]);
                         maxR = Double.parseDouble(split[1]);
+
+                        if (minR > maxR) {
+                            System.err.println("Invalid radius range: " + r);
+                            return null;
+                        }
+
                     } catch (NumberFormatException e) {
                         System.err.println("Invalid radius range: " + r);
                         return null;
