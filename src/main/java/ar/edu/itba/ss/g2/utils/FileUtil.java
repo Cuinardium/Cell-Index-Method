@@ -108,6 +108,11 @@ public class FileUtil {
                         .toList();
 
         try (FileWriter writer = new FileWriter(new File(directory + "/output.txt"))) {
+
+            // Duration in milliseconds
+            writer.write(output.getMillis() + "\n");
+
+            // Particle neighbours
             for (Particle particle : sortedParticles) {
                 writer.write(
                         particle.getId()

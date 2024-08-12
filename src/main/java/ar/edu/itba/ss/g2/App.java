@@ -81,9 +81,15 @@ public class App {
         long M = configuration.getM();
         double rc = configuration.getRc();
 
+        // Start time
+        long startTime = System.currentTimeMillis();
+
         Map<Particle, List<Particle>> neighbours = CellIndexMethod.calculate(particles, L, M, rc);
 
-        Output output = new Output(neighbours);
+        // End time
+        long endTime = System.currentTimeMillis();
+
+        Output output = new Output(neighbours, endTime - startTime);
 
         try {
             FileUtil.serializeOutput(output, outputDirectory);
@@ -91,6 +97,7 @@ public class App {
             System.err.println("Error writing to output files: " + e.getMessage());
             System.exit(1);
             return;
-        } */
+        }
+        */
     }
 }

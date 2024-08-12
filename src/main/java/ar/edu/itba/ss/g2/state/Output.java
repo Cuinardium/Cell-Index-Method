@@ -8,12 +8,18 @@ import java.util.Map;
 public class Output {
 
     private final Map<Particle, List<Particle>> particleNeighbours;
+    private final long millis;
 
-    public Output(Map<Particle, List<Particle>> particleNeighbours) {
+    public Output(Map<Particle, List<Particle>> particleNeighbours, long millis) {
+        this.millis = millis;
         this.particleNeighbours = particleNeighbours;
     }
 
     public Map<Particle, List<Particle>> getParticleNeighbours() {
         return particleNeighbours;
+    }
+
+    public long getMillis() {
+        return millis;
     }
 }
