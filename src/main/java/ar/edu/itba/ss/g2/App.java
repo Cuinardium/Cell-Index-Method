@@ -9,6 +9,7 @@ import ar.edu.itba.ss.g2.utils.FileUtil;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class App {
 
@@ -77,14 +78,14 @@ public class App {
         }
 
         // Cell Index Method
-        /*
+
         long M = configuration.getM();
         double rc = configuration.getRc();
 
         // Start time
         long startTime = System.currentTimeMillis();
 
-        Map<Particle, List<Particle>> neighbours = CellIndexMethod.calculate(particles, L, M, rc);
+        Map<Particle, Set<Particle>> neighbours = CellIndexMethod.calculate(particles, L, M, rc);
 
         // End time
         long endTime = System.currentTimeMillis();
@@ -98,6 +99,6 @@ public class App {
             System.exit(1);
             return;
         }
-        */
+
     }
 }

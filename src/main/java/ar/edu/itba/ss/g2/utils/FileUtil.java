@@ -9,10 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FileUtil {
@@ -101,7 +98,7 @@ public class FileUtil {
             dir.mkdirs();
         }
 
-        Map<Particle, List<Particle>> particleNeighbours = output.getParticleNeighbours();
+        Map<Particle, Set<Particle>> particleNeighbours = output.getParticleNeighbours();
         List<Particle> sortedParticles =
                 particleNeighbours.keySet().stream()
                         .sorted(Comparator.comparingLong(Particle::getId))
@@ -119,7 +116,7 @@ public class FileUtil {
                                 + " "
                                 + particleNeighbours.get(particle).stream()
                                         .map(p -> p.getId().toString())
-                                        .collect(Collectors.joining(" ")));
+                                        .collect(Collectors.joining(" ")) + "\n");
             }
         }
     }
