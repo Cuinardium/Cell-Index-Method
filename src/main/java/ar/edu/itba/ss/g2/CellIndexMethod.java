@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CellIndexMethod {
 
-    public static Map<Particle, List<Particle>> calculate(List<Particle> particles, Double L, Long M, Double rc) {
+    public static Map<Particle, List<Particle>> calculate(List<Particle> particles, Long L, Long M, Double rc) {
         throw new UnsupportedOperationException();
     }
 }
