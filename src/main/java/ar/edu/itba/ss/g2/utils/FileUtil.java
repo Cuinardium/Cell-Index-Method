@@ -31,7 +31,7 @@ public class FileUtil {
         long L = input.getL();
 
         // Static file
-        try (FileWriter writer = new FileWriter(new File(directory + "/static.txt"))) {
+        try (FileWriter writer = new FileWriter(directory + "/static.txt")) {
             writer.write(N + "\n");
             writer.write(L + "\n");
             for (Particle particle : particles) {
@@ -40,7 +40,7 @@ public class FileUtil {
         }
 
         // Dynamic file
-        try (FileWriter writer = new FileWriter(new File(directory + "/dynamic.txt"))) {
+        try (FileWriter writer = new FileWriter(directory + "/dynamic.txt")) {
             writer.write("0\n");
             for (Particle particle : particles) {
                 writer.write(particle.getX() + " " + particle.getY() + "\n");
@@ -56,7 +56,7 @@ public class FileUtil {
 
         // Read static file
         try (BufferedReader staticReader =
-                new BufferedReader(new FileReader(new File(directory + "/static.txt")))) {
+                new BufferedReader(new FileReader(directory + "/static.txt"))) {
 
             N = Integer.parseInt(staticReader.readLine().trim());
             radiuses = new ArrayList<>(N);
@@ -73,7 +73,7 @@ public class FileUtil {
 
         // Read dynamic file
         try (BufferedReader dynamicReader =
-                new BufferedReader(new FileReader(new File(directory + ("/dynamic.txt"))))) {
+                new BufferedReader(new FileReader(directory + ("/dynamic.txt")))) {
             // Skip the first line (timestamp)
             dynamicReader.readLine();
 
@@ -104,7 +104,7 @@ public class FileUtil {
                         .sorted(Comparator.comparingLong(Particle::getId))
                         .toList();
 
-        try (FileWriter writer = new FileWriter(new File(directory + "/output.txt"))) {
+        try (FileWriter writer = new FileWriter(directory + "/output.txt")) {
 
             // Duration in milliseconds
             writer.write(output.getMillis() + "\n");
@@ -115,6 +115,7 @@ public class FileUtil {
                         particle.getId()
                                 + " "
                                 + particleNeighbours.get(particle).stream()
+                                        .sorted(Comparator.comparingLong(Particle::getId))
                                         .map(p -> p.getId().toString())
                                         .collect(Collectors.joining(" ")) + "\n");
             }
