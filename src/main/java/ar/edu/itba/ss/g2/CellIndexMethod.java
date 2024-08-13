@@ -51,15 +51,8 @@ public class CellIndexMethod {
         for(int i = Math.max(x-1, 0); i <= x; i++) {
             for(int j = y; j <= Math.min(y+1, grid.size() - 1); j++) {
                 for(Particle p2 : grid.get(i).get(j)) {
-                    if(!p.equals(p2) && p.distanceTo(p2) < rc) {
-                        if(!map.containsKey(p)) {
-                            map.put(p, new HashSet<>());
-                        }
-                        if(!map.containsKey(p2)) {
-                            map.put(p2, new HashSet<>());
-                        }
-                        map.get(p).add(p2);
-                        map.get(p2).add(p);
+                    if(!p.equals(p2)) {
+                        addIfClose(p, p2, rc, map);
                     }
                 }
             }
@@ -72,17 +65,21 @@ public class CellIndexMethod {
         y = y+1;
         if (!(x >= grid.size() || y >= grid.get(x).size())) {
             for(Particle p2: grid.get(x).get(y)) {
-                if(p.distanceTo(p2) < rc) {
-                    if(!map.containsKey(p)) {
-                        map.put(p, new HashSet<>());
-                    }
-                    if(!map.containsKey(p2)) {
-                        map.put(p2, new HashSet<>());
-                    }
-                    map.get(p).add(p2);
-                    map.get(p2).add(p);
-                }
+                addIfClose(p, p2, rc, map);
             }
+        }
+    }
+
+    private static void addIfClose(Particle p1, Particle p2, Double rc, Map<Particle, Set<Particle>> map) {
+        if(p1.distanceTo(p2) < rc) {
+            if(!map.containsKey(p1)) {
+                map.put(p1, new HashSet<>());
+            }
+            if(!map.containsKey(p2)) {
+                map.put(p2, new HashSet<>());
+            }
+            map.get(p1).add(p2);
+            map.get(p2).add(p1);
         }
     }
 }
