@@ -50,7 +50,7 @@ public class CellIndexMethod {
         // - x x
         // - - -
         for(int i = Math.max(x-1, 0); i <= x; i++) {
-            for(int j = y; j < Math.min(y+1, grid.size()); j++) {
+            for(int j = y; j <= Math.min(y+1, grid.size() - 1); j++) {
                 for(Particle p2 : grid.get(i).get(j)) {
                     if(!p.equals(p2) && getDistance(p, p2) < rc) {
                         if(!map.containsKey(p)) {
