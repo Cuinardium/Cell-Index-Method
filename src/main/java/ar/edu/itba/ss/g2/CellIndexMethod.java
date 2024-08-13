@@ -38,21 +38,20 @@ public class CellIndexMethod {
         if(x < 0 || y < 0 || x >= grid.size() || y >= grid.get(x).size()) {
             return;
         }
-        List<Particle> adjacentParticles = new ArrayList<>();
 
         // tengo
         // - - -
-        // - - -
+        // - x -
         // - - -
 
         // reviso
-        // - x x
-        // - x x
+        // x x -
+        // x x -
         // - - -
         for(int i = Math.max(x-1, 0); i <= x; i++) {
             for(int j = y; j <= Math.min(y+1, grid.size() - 1); j++) {
                 for(Particle p2 : grid.get(i).get(j)) {
-                    if(!p.equals(p2) && getDistance(p, p2) < rc) {
+                    if(!p.equals(p2) && p.distanceTo(p2) < rc) {
                         if(!map.containsKey(p)) {
                             map.put(p, new HashSet<>());
                         }
@@ -66,14 +65,14 @@ public class CellIndexMethod {
             }
         }
         // reviso
-        // - - -
-        // - - -
         // - - x
+        // - - -
+        // - - -
         x = x+1;
         y = y+1;
         if (!(x >= grid.size() || y >= grid.get(x).size())) {
             for(Particle p2: grid.get(x).get(y)) {
-                if(getDistance(p, p2) < rc) {
+                if(p.distanceTo(p2) < rc) {
                     if(!map.containsKey(p)) {
                         map.put(p, new HashSet<>());
                     }
@@ -85,12 +84,5 @@ public class CellIndexMethod {
                 }
             }
         }
-
-    }
-
-    private static double getDistance(Particle p1, Particle p2) {
-        double c1 = p1.getX() - p2.getX();
-        double c2 = p1.getY() - p2.getY();
-        return Math.sqrt(Math.pow(c1, 2) + Math.pow(c2, 2));
     }
 }

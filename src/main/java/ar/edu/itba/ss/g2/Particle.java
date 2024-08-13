@@ -32,6 +32,16 @@ public class Particle {
         return id;
     }
 
+    public Double distanceTo(Particle other) {
+        double dx = this.x - other.x;
+        double dy = this.y - other.y;
+        double centerToCenterDistance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+
+        double borderToBorderDistance = centerToCenterDistance - this.radius - other.radius;
+
+        return borderToBorderDistance;
+    }
+
     @Override
     public String toString() {
         return "{" + "id=" + id + ", x=" + x + ", y=" + y + ", r=" + radius + '}';

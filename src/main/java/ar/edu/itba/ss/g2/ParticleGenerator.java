@@ -20,7 +20,7 @@ public class ParticleGenerator {
 
     public ParticleGenerator(Long areaLength, Integer particleAmount, Double particleRadius) {
 
-        if (particleRadius <= 0) {
+        if (particleRadius < 0) {
             throw new IllegalArgumentException("Particle radius must be greater than 0");
         }
 
