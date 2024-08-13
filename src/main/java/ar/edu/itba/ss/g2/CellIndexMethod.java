@@ -45,8 +45,8 @@ public class CellIndexMethod {
         // - - -
 
         // reviso
-        // x x -
-        // x x -
+        // - x x
+        // - x x
         // - - -
         for(int i = Math.max(x-1, 0); i <= x; i++) {
             for(int j = y; j <= Math.min(y+1, grid.size() - 1); j++) {
@@ -58,9 +58,9 @@ public class CellIndexMethod {
             }
         }
         // reviso
+        // - - -
+        // - - -
         // - - x
-        // - - -
-        // - - -
         x = x+1;
         y = y+1;
         if (!(x >= grid.size() || y >= grid.get(x).size())) {
