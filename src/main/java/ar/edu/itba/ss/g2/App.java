@@ -95,6 +95,7 @@ public class App {
         // End time
         long endTime = System.currentTimeMillis();
 
+        System.out.println(endTime-startTime);
         Output output = new Output(neighbours, endTime - startTime);
 
         try {
