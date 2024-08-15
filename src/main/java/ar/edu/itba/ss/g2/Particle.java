@@ -39,8 +39,24 @@ public class Particle {
 
         double borderToBorderDistance = centerToCenterDistance - this.radius - other.radius;
 
-        return borderToBorderDistance;
+        return Math.max(0, borderToBorderDistance);
     }
+
+    public Double toroidalDistanceTo(Particle other, Long L) {
+        double dx = Math.abs(this.x - other.x);
+        double dy = Math.abs(this.y - other.y);
+
+        // Toroide, me quedo con la distancia más corta
+        dx = Math.min(dx, L - dx);
+        dy = Math.min(dy, L - dy);
+
+        double centerToCenterDistance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+
+        double borderToBorderDistance = centerToCenterDistance - this.radius - other.radius;
+
+        return Math.max(0, borderToBorderDistance);
+    }
+
 
     @Override
     public String toString() {

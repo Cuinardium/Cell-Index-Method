@@ -32,7 +32,8 @@ public class ArgParser {
 
                     // For Cell Index Method
                     new Option("M", "matrix", true, "Amount of cells in the matrix: M x M"),
-                    new Option("rc", "cutoff", true, "Cutoff radius for the Cell Index Method"));
+                    new Option("rc", "cutoff", true, "Cutoff radius for the Cell Index Method"),
+                    new Option("t", "toroidal", false, "Use toroidal space"));
 
     private final String[] args;
     private final Options options;
@@ -194,6 +195,9 @@ public class ArgParser {
             return null;
         }
 
+        if (cmd.hasOption("t")) {
+            builder.toroidal();
+        }
 
         return builder.build();
     }

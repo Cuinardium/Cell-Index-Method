@@ -81,11 +81,16 @@ public class App {
 
         long M = configuration.getM();
         double rc = configuration.getRc();
+        boolean isToroidal = configuration.isToroidal();
+
+        if (isToroidal) {
+            throw new RuntimeException();
+        }
 
         // Start time
         long startTime = System.currentTimeMillis();
 
-        Map<Particle, Set<Particle>> neighbours = CellIndexMethod.calculate(particles, L, M, rc);
+        Map<Particle, Set<Particle>> neighbours = CellIndexMethod.calculate(particles, L, M, rc, isToroidal);
 
         // End time
         long endTime = System.currentTimeMillis();

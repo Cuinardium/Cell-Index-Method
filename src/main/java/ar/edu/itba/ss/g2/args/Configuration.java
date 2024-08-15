@@ -17,6 +17,7 @@ public class Configuration {
 
     private long M;
     private double rc;
+    private boolean toroidal;
 
     private Configuration(Builder builder) {
         this.inputDirectory = builder.inputDirectory;
@@ -30,6 +31,7 @@ public class Configuration {
         this.maxR = builder.maxR;
         this.M = builder.M;
         this.rc = builder.rc;
+        this.toroidal = builder.toroidal;
     }
 
     public String getInputDirectory() {
@@ -76,6 +78,10 @@ public class Configuration {
         return rc;
     }
 
+    public boolean isToroidal() {
+        return toroidal;
+    }
+
     public static class Builder {
 
         private String inputDirectory;
@@ -93,6 +99,8 @@ public class Configuration {
 
         private long M;
         private double rc;
+
+        private boolean toroidal = false;
 
         public Builder() {}
 
@@ -148,6 +156,11 @@ public class Configuration {
 
         public Builder rc(double rc) {
             this.rc = rc;
+            return this;
+        }
+
+        public Builder toroidal() {
+            this.toroidal = true;
             return this;
         }
 
