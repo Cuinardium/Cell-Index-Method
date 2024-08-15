@@ -1,16 +1,16 @@
 import visualization_utils as vu
 import parse_utils as pu
 
+DATA_PATH = '../data/'
+STATIC_FILENAME = 'static.txt'
+DYNAMIC_FILENAME = 'dynamic.txt'
+OUTPUT_FILENAME = 'output.txt'
+
 if __name__ == '__main__':
-    # Parse the static and dynamic values
-    n, l, static_values = pu.parse_static('ArchivosEjemplo/static.txt')
-    t, dynamic_values = pu.parse_dynamic('ArchivosEjemplo/dynamic.txt')
+    n, l, static_values = pu.parse_static(DATA_PATH + STATIC_FILENAME)
+    t, dynamic_values = pu.parse_dynamic(DATA_PATH + DYNAMIC_FILENAME)
+    simulation_time, neighbours = pu.parse_output(DATA_PATH + OUTPUT_FILENAME)
 
-    # Parse the neighbours
-    simulation_time, neighbours = pu.parse_output('ArchivosEjemplo/output.txt')
-
-    # Create a visualization object
     vis = vu.ParticleVisualization(n, l, static_values, t, dynamic_values, neighbours, simulation_time)
 
-    # Plot the results
     vis.plot_results()
