@@ -28,9 +28,37 @@ public class AppTest {
     public void testApp(int M) throws IOException {
         Input input = FileUtil.deserializeInput("src/test/resources");
 
-        var a = CellIndexMethod.calculate(input.getParticles(), input.getL(), (long) M, 1.0);
+        var a = CellIndexMethod.calculate(input.getParticles(), input.getL(), (long) M, 1.0, false);
 
         String expectedOutputFile = "src/test/resources/output.txt";
+
+        FileUtil.serializeOutput(new Output(a, 0), tempDir.getAbsolutePath());
+
+        File expectedOutput = new File(expectedOutputFile);
+
+        File actualOutput = new File(tempDir.getAbsolutePath() + "/output.txt");
+
+        try (BufferedReader expectedReader = new BufferedReader(new FileReader(expectedOutput));
+                BufferedReader actualReader = new BufferedReader(new FileReader(actualOutput))) {
+
+            String expectedLine;
+            String actualLine;
+
+            while ((expectedLine = expectedReader.readLine()) != null) {
+                actualLine = actualReader.readLine();
+                assertEquals(expectedLine, actualLine);
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideM")
+    public void testAppToroidal(int M) throws IOException {
+        Input input = FileUtil.deserializeInput("src/test/resources");
+
+        var a = CellIndexMethod.calculate(input.getParticles(), input.getL(), (long) M, 1.0, true);
+
+        String expectedOutputFile = "src/test/resources/output-toroidal.txt";
 
         FileUtil.serializeOutput(new Output(a, 0), tempDir.getAbsolutePath());
 
