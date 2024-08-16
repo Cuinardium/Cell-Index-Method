@@ -14,7 +14,7 @@ function benchmark() {
     sum=$(($sum + $(java -jar target/cell-index-method-1.0-SNAPSHOT-jar-with-dependencies.jar -g -out data -L 20 -r 0.25 -rc 0.5 -N $1 -M $2)))
   done
   time=$(($sum/$count))
-  echo "N:$1 M:$2 10 runs mean-time:${time}ms"
+  echo "N:$1 M:$2 $count runs mean-time:${time}ms"
 }
 
 echo ""
