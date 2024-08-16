@@ -6,9 +6,6 @@ public class CellIndexMethod {
 
     public static Map<Particle, Set<Particle>> calculate(
             List<Particle> particles, Long L, Long M, Double rc, boolean isToroidal) {
-        if((double) L/M <= rc) {
-            throw new IllegalArgumentException("L/M <= rc");
-        }
         List<List<Set<Particle>>> grid =
                 isToroidal ? generateToroidalGrid(particles, L, M) : generateGrid(particles, L, M);
 

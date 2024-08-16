@@ -80,7 +80,18 @@ public class App {
         // Cell Index Method
 
         long M = configuration.getM();
+        double r;
+        if(!configuration.isConstantRadius()) {
+            r = configuration.getMaxR();
+        } else {
+            r = configuration.getR();
+        }
+
         double rc = configuration.getRc();
+
+        if((double)L/M <= rc +r) {
+            throw new IllegalArgumentException("L/M <= rc + r");
+        }
         boolean isToroidal = configuration.isToroidal();
 
         // Start time
