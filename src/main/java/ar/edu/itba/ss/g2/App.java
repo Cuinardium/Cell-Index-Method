@@ -83,10 +83,6 @@ public class App {
         double rc = configuration.getRc();
         boolean isToroidal = configuration.isToroidal();
 
-        if (isToroidal) {
-            throw new RuntimeException();
-        }
-
         // Start time
         long startTime = System.currentTimeMillis();
 
