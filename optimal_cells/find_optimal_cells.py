@@ -2,8 +2,11 @@ import math
 import os
 
 def calculate_optimal_M(L, r_c, r_max, N):
-    # Ensure that L/M > r_c
-    M_rc = math.floor(L / r_c)
+    # Ensure that L/M > r_c + r
+    M_rc = math.floor(L / (r_c + r)) - 1
+
+    if(L/M_rc == r_c +r):
+        M_rc -= 1
 
     # Calculate particle density
     density = N / (L ** 2)
