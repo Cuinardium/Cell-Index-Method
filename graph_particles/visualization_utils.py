@@ -30,6 +30,10 @@ class ParticleVisualization:
         for i in range(self.n):
             r = self.static_values_list[i]
             x, y = self.dynamic_values_list[i]
+
+            if r == 0:
+                r = 0.1
+
             circle = plt.Circle((x, y), r, edgecolor='r', fill=False)
             self.circles.append(circle)
             self.ax.add_artist(circle)
