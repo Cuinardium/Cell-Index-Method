@@ -89,8 +89,8 @@ public class App {
 
         double rc = configuration.getRc();
 
-        if((double)L/M <= rc +r) {
-            throw new IllegalArgumentException("L/M <= rc + r");
+        if((double)L/M <= rc + 2 * r) {
+            throw new IllegalArgumentException("L/M <= rc + 2 * r");
         }
         boolean isToroidal = configuration.isToroidal();
 
