@@ -211,7 +211,7 @@ public class ArgParser {
         formatter.setWidth(120);
 
         String commandLineSyntax =
-                "mvn exec:java -Dexec.mainClass=ar.edu.itba.ss.g2.App -Dexec.args=\"[options]\"";
+                "java -jar cell-index-method-1.0-SNAPSHOT-jar-with-dependencies.jar [OPTIONS]";
 
         formatter.printHelp(commandLineSyntax, options);
     }
