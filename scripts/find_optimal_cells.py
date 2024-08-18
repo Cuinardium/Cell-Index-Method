@@ -25,7 +25,7 @@ def calculate_optimal_M(L, r_c, r_max, N):
 
 def execute_simulation(M, L, rc, r, N, g='-g'):
     data_path = 'data'
-    os.system(f'java -jar ../target/cell-index-method-1.0-SNAPSHOT-jar-with-dependencies.jar {g} -out {data_path} -N {N} -M {M} -L {L} -rc {rc} -r {r}')
+    os.system(f'java -jar ./target/cell-index-method-1.0-SNAPSHOT-jar-with-dependencies.jar {g} -out {data_path} -N {N} -M {M} -L {L} -rc {rc} -r {r}')
 
     with open(f'{data_path}/output.txt', 'r') as f:
         lines = f.readlines()
