@@ -23,13 +23,13 @@ Short|	Long|	Argument|	Description
 --- | --- | --- | ---
 -h	|--help	|(none)	|Show help information and usage instructions.
 -g	|--generate|	(none)|	Generate particles. If not set, input is read from the specified input directory.
--in	|--input	|<directory>	|Input directory. It must contain static.txt and dynamic.txt files.
--out|	--output	|<directory>|	Output directory where results will be stored.
--N	|--number	|<int>	|Number of particles to generate.
--L	|--length	|<long>|	Length of the area to be analyzed.
--r	|--radius	|<double> or <double>:<double>|	Set a constant particle radius or a random uniform radius within a specified range.
--M	|--matrix	|<int>	|Number of cells in the matrix (M x M).
--rc	|--cutoff	|<double>|	Cutoff radius for the Cell Index Method.
+-in	|--input	|\<directory\>	|Input directory. It must contain static.txt and dynamic.txt files.
+-out|	--output	|\<directory\>|	Output directory where results will be stored.
+-N	|--number	|\<int\>	|Number of particles to generate.
+-L	|--length	|\<long\>|	Length of the area to be analyzed.
+-r	|--radius	|\<double\> or \<double\>:\<double\>|	Set a constant particle radius or a random uniform radius within a specified range.
+-M	|--matrix	|\<int\>	|Number of cells in the matrix (M x M).
+-rc	|--cutoff	|\<double\>|	Cutoff radius for the Cell Index Method.
 -t	|--toroidal	|(none)	|Use toroidal (cyclic) space.
 
 ## Input/Output File Format
